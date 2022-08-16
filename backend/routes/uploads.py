@@ -56,7 +56,7 @@ def serve_image(filename):
 @upload.route('/download-image/<filename>', methods=['GET'])
 def download_image(filename):
     try:
-        return send_from_directory(current_app.config['UPLOAD_DIRECTORY'], filename=filename, as_attachment=True)
+        return send_from_directory(current_app.config['UPLOAD_DIRECTORY'], filename, as_attachment=True)
     except FileNotFoundError:
         abort (404)
 

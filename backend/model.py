@@ -12,7 +12,7 @@ db = SQLAlchemy()
 class Upload(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     filename = db.Column(db.String(100), nullable=False)
-    fp = db.Column(db.String(264), unique=True)
+    fp = db.Column(db.String(264), nullable=False)
 
     def __repr__(self):
         return f"Upload: {self.filename}"
