@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Uploads</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="app">
+        <div class="images-section">
+    
+           {% if user_img %} 
+              <img src="{{ url_for('upload.serve_image', filename=user_img) }}"/>
+            {% endif %}
+            
+          </div>
+        </div>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, abort, current_app, json, flash, send_from_directory
+from flask import Blueprint, render_template, request, redirect, url_for, abort, current_app, json, flash, send_from_directory, send_file
 from model import db
 from model import Upload
 from werkzeug.utils import secure_filename
@@ -21,6 +21,7 @@ def index():
 
     return render_template('index.html', images=images)
 
+#upload file
 @upload.route('/upload', methods=['POST'])
 def upload_file():
     try:
@@ -46,6 +47,24 @@ def upload_file():
 
     return redirect('/')
 
+#display files
 @upload.route('/serve-image/<filename>', methods=['GET'])
 def serve_image(filename):
     return send_from_directory(current_app.config['UPLOAD_DIRECTORY'], filename)
+
+#download file
+@upload.route('/download-image/<filename>', methods=['GET'])
+def download_image(filename):
+    try:
+        return send_from_directory(current_app.config['UPLOAD_DIRECTORY'], filename=filename, as_attachment=True)
+    except FileNotFoundError:
+        abort (404)
+
+@upload.route('/single-image/<filename>', methods=['GET'])
+def single_image(filename):
+    return render_template('target.html', user_img=filename)
+
+
+
+
+

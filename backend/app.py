@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from datetime import datetime
 from flask_cors import CORS
 from routes.uploads import upload
@@ -17,6 +17,15 @@ def create_app():
 
     with app.app_context():
         db.create_all()
+
+    @app.route('/target')
+    def target_page():
+
+        title="targetpage"
+        context={
+            'title':title
+        }
+        return render_template('target.html',**context)
 
     if __name__ == '__main__':
         app.run(debug=True)
