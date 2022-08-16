@@ -7,7 +7,7 @@ from model import db
 def create_app():
     app = Flask(__name__)
     app.config['UPLOAD_DIRECTORY'] = 'uploads/'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:4donald5@localhost/baby-tracker'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'PGURL/USERNAME/PASSWORD/DB'
     app.config["SECRET_KEY"] = '5f352379324c22463451387a0eeesddef'
     app.config['ALLOWED_EXTENSIONS'] = ['.jpg', '.jpeg', '.png', '.gif']
 
